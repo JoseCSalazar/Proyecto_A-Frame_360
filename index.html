@@ -1,0 +1,123 @@
+<!--
+###############################################################################
+  Jose Carlos Salazar
+  Realidad Virtual - UOC
+  PEC 3: Entornos Inmersivos 360º con A-Frame
+  Escena 1: Imagen Panorámica 360º y Objetos 3D
+  ---------------------------------- Autoria --------------------------------
+  Imagen 360º: "Grasslands Sunset" por Dimitrios Savva y Jarod Guest (Poly Haven - CC0)
+  Modelo 3D: "birdAnimated.glb" (Pájaro animado)
+
+###############################################################################
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEC3 - Escena 1: Imagen 360º y Objetos 3D</title>
+  
+  <!-- Librerías de la escena -->
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+</head>
+<body>
+
+  <a-scene>
+    <!-- Imágenes y modelos -->
+    <a-assets>
+      <img id="sky-texture" src="./Recursos/grasslands_sunset.jpg">
+      <a-asset-item id="pajaro" src="Recursos/birdAnimated.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Fondo 360º -->
+    <a-sky src="#sky-texture" rotation="0 -90 0"></a-sky>
+
+    <!-- Cámara -->
+    <a-camera id="main-camera" cursor="rayOrigin: mouse" raycaster="objects: .link, .interactivo, a-box">
+    </a-camera>
+
+    <!-- Luces -->
+    <a-light type="ambient" color="#FFFFFF" intensity="0.8"></a-light>
+    <a-light type="directional" position="-1 2 1" intensity="0.5"></a-light>
+
+    <!-- Título -->
+    <a-text 
+      value="PEC3: Entorno Virtual 360" 
+      position="0 2.8 -3.5" 
+      align="center" 
+      color="#FFFFFF" 
+      scale="1.5 1.5 1.5"
+      geometry="primitive: plane; width: 3.2; height: 0.6" 
+      material="color: #212121; opacity: 0.8">
+    </a-text>
+    
+    <!-- Pájaros en vuelo -->
+    <a-gltf-model 
+      src="#pajaro" 
+      position="-8 2.3 -4" 
+      scale="0.2 0.2 0.2" 
+      rotation="0 90 0"
+      fix-color
+      animation-mixer
+      animation="property: position; from: -8 2.3 -4; to: 8 2.3 -4; loop: true; dur: 8000; easing: linear">
+    </a-gltf-model>
+
+    <a-gltf-model 
+      src="#pajaro" 
+      position="-10 3.0 -5.5" 
+      scale="0.14 0.14 0.14" 
+      rotation="0 90 0"
+      fix-color
+      animation-mixer
+      animation="property: position; from: -10 3.0 -5.5; to: 10 3.0 -5.5; loop: true; dur: 9500; easing: linear">
+    </a-gltf-model>
+
+    <a-gltf-model 
+      src="#pajaro" 
+      position="-7 1.7 -3.5" 
+      scale="0.18 0.18 0.18" 
+      rotation="0 90 0"
+      fix-color
+      animation-mixer
+      animation="property: position; from: -7 1.7 -3.5; to: 9 1.7 -3.5; loop: true; dur: 7200; easing: linear">
+    </a-gltf-model>
+
+    <a-gltf-model 
+      src="#pajaro" 
+      position="-9 2.6 -4.5" 
+      scale="0.16 0.16 0.16" 
+      rotation="0 90 0"
+      fix-color
+      animation-mixer
+      animation="property: position; from: -9 2.6 -4.5; to: 9 2.6 -4.5; loop: true; dur: 8600; easing: linear">
+    </a-gltf-model>
+
+
+
+    <!-- Pedestal -->
+    <a-cylinder 
+      position="0 0 -4" 
+      radius="1.2" 
+      height="0.1" 
+      color="#FFC107">
+    </a-cylinder>
+
+    <!-- Pasar al vídeo -->
+    <a-entity position="0 1.2 -3.8">
+      <a-box 
+        class="link" 
+        width="2.2" height="0.6" depth="0.1" 
+        color="#1E88E5"
+        event-set__enter="_event: mouseenter; color: #4CAF50"
+        event-set__leave="_event: mouseleave; color: #1E88E5"
+        onclick="window.location.href='escena2.html'">
+        <a-text value="Ir a Escena 2 (Video 360)" align="center" position="0 0 0.08" color="#FFFFFF" scale="0.8 0.8 0.8"></a-text>
+      </a-box>
+    </a-entity>
+
+  </a-scene>
+
+</body>
+</html>
